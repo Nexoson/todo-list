@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: 01_todo_list  # 设置应用名称为01_todo_list
+  datasource:
+    url: jdbc:mysql://123.456.789/vue_study?useSSL=true&serverTimezone=Asia/Shanghai
+    # 数据源URL，指向MySQL数据库，配置了字符编码、SSL和时区
+    username: xxx  # 数据库用户名
+    password: xxx  # 数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC驱动类名
+    hikari:
+      maximum-pool-size: 10  # HikariCP连接池最大连接数
+      minimum-idle: 10  # HikariCP连接池最小空闲连接数
+      idle-timeout: 600000  # HikariCP连接池空闲连接超时时间（毫秒）
+      max-lifetime: 28740000   # HikariCP连接池连接最大生命周期（毫秒）
+      connection-timeout: 30000  # HikariCP连接池连接超时时间（毫秒）
+      pool-name: MysqlPool  # HikariCP连接池名称
+      leak-detection-threshold: 2000 # 2秒
+      connection-test-query: SELECT 1
+      validation-timeout: 50000
+      auto-commit: true
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+  mvc:
+    static-path-pattern: /static/**
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 配置日志框架（例如 Logback）
+logging:
+  level:
+    # 设置全局日志级别
+    root: INFO
+    # 设置特定包的日志级别
+    com.example.yourpackage: DEBUG
+    com.zaxxer.hikari: DEBUG
+
+  # 配置日志文件输出
+  file:
+    name: logs/application.log  # 日志文件名称
+    path: D:\ProjectCenter\01_back-end\01_todo_list\log     # 日志文件路径
+
+  # 配置日志格式
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # 控制台日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"     # 文件日志格式
