@@ -30,12 +30,14 @@ public class GlobalExceptionAdvice {
     /**
      * 处理业务异常
      *
-     * @param exception
-     * @return
+     * @param exception 业务异常对象
+     * @return 返回包含异常信息的RestResult对象
      */
     @ExceptionHandler(BusinessException.class)
     public RestResult<Object> handleBusinessException(BusinessException exception) {
+        // 记录异常信息到日志
         log.error(exception.getMessage(), exception);
+        // 返回包含异常代码和消息的RestResult对象
         return new RestResult<>(exception.getCode(), exception.getMsg());
     }
     // 使用@ExceptionHandler注解来处理所有类型的Throwable异常

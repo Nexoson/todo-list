@@ -2,23 +2,30 @@ spring:
   application:
     name: 01_todo_list  # 设置应用名称为01_todo_list
   datasource:
-    url: jdbc:mysql://123.456.789/vue_study?useSSL=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.39.133:3307/vue_study?useSSL=false&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+#    url: jdbc:mysql://27.24.97.251:3308/vue_study??useUnicode=true&characterEncoding=utf-8&serviceTimezone=Asia/Shanghai&allowMultiQueries=true&allowPublicKeyRetrieval=ture
     # 数据源URL，指向MySQL数据库，配置了字符编码、SSL和时区
-    username: xxx  # 数据库用户名
-    password: xxx  # 数据库密码
-    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC驱动类名
-    hikari:
-      maximum-pool-size: 10  # HikariCP连接池最大连接数
-      minimum-idle: 10  # HikariCP连接池最小空闲连接数
-      idle-timeout: 600000  # HikariCP连接池空闲连接超时时间（毫秒）
-      max-lifetime: 28740000   # HikariCP连接池连接最大生命周期（毫秒）
-      connection-timeout: 30000  # HikariCP连接池连接超时时间（毫秒）
-      pool-name: MysqlPool  # HikariCP连接池名称
-      leak-detection-threshold: 2000 # 2秒
-      connection-test-query: SELECT 1
-      validation-timeout: 50000
-      auto-commit: true
-      transaction-isolation: TRANSACTION_READ_COMMITTED
+    username: max  # 数据库用户名
+    password: max@mysql  # 数据库密码
+    driver-class-name:  com.mysql.cj.jdbc.Driver # MySQL JDBC驱动类名
+    druid:
+      initial-size: 6
+      min-idle: 3
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,log4j2
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+
   mvc:
     static-path-pattern: /static/**
 
@@ -44,3 +51,5 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # 控制台日志格式
     file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"     # 文件日志格式
+
+  # 配置日志滚动策略

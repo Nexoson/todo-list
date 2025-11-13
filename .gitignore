@@ -11,3 +11,4 @@
 /target/
 /logs/application.log
 /logs/application.log.2025-03-23.0.gz
+/logs/
