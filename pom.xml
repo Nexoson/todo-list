@@ -31,6 +31,7 @@
   <properties>
     <java.version>21</java.version>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -94,6 +95,13 @@
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
       <version>2.6.0</version>
+    </dependency>
+
+    <!-- 使用 javacv-platform 自动引入 opencv/ffmpeg platform -->
+    <dependency>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>javacv-platform</artifactId>
+      <version>1.5.10</version>
     </dependency>
 
   </dependencies>

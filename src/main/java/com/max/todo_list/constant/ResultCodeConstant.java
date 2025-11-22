@@ -11,6 +11,8 @@ import java.lang.String;
 public final class ResultCodeConstant {
   public static final String CODE_SUCCESS = "200";
 
+  public static final String CODE_FAILURE = "2301002";
+
   public static final String CODE_SUCCESS_MSG = "调用成功";
 
   public static final String CODE_999999 = "999999";
